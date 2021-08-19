@@ -22,11 +22,13 @@ func (p *Pin) OnValueChange(callback func(g *Pin)) error {
 	if string(b) == "0" {
 		listenvalue = HIGH
 	}
-  var v VALUE
+	var v VALUE
 
 	for {
-    v, err = p.Value()
-    if err != nil {panic(err)}
+		v, err = p.Value()
+		if err != nil {
+			panic(err)
+		}
 		if v == listenvalue {
 			callback(p)
 		}
