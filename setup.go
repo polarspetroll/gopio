@@ -6,7 +6,7 @@ Functions in this file: New, Close
 
 import (
 	"fmt"
-	"os"
+	"io/ioutil"
 )
 
 func New(pnum int, dir DIR) (pin Pin, err error) {
@@ -20,27 +20,16 @@ func New(pnum int, dir DIR) (pin Pin, err error) {
 	}
 
 	file := fmt.Sprintf("%s/export", basedir)
-	var f *os.File
 
 	// export the pin
-	f, err = os.OpenFile(file, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-	if err != nil {
-		return Pin{}, err
-	}
-	defer f.Close()
-
-	_, err = f.WriteString(fmt.Sprintf("%v", pnum))
+	err = ioutil.WriteFile(file, []byte(fmt.Sprintf("%d", pnum)), 0666)
 	if err != nil {
 		return Pin{}, err
 	}
 
 	// specify the direction
 	file = fmt.Sprintf("%s/gpio%d/direction", basedir, pnum)
-	f, err = os.OpenFile(file, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-	if err != nil {
-		return Pin{}, err
-	}
-	_, err = f.WriteString(fmt.Sprintf("%v", dir))
+	err = ioutil.WriteFile(file, []byte(dir), 0666)
 	if err != nil {
 		return Pin{}, err
 	}
@@ -50,12 +39,7 @@ func New(pnum int, dir DIR) (pin Pin, err error) {
 
 func (p *Pin) Close() error {
 	file := fmt.Sprintf("%s/unexport", basedir)
-	f, err := os.OpenFile(file, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-	if err != nil {
-		return err
-	}
-	defer f.Close()
-	_, err = f.WriteString(fmt.Sprintf("%d", p.Num))
+	err := ioutil.WriteFile(file, []byte(fmt.Sprintf("%d", p.Num)), 0666)
 	if err != nil {
 		return err
 	}

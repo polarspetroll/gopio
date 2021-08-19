@@ -6,17 +6,12 @@ Functions in this file: SetDirOut, SetDirIn, ChangeValue, SetHigh, SetLow
 
 import (
 	"fmt"
-	"os"
+	"io/ioutil"
 )
 
 func (p *Pin) SetDirOut() error {
 	file := fmt.Sprintf("%s/gpio%d/direction", basedir, p.Num)
-	f, err := os.OpenFile(file, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-	if err != nil {
-		return err
-	}
-	defer f.Close()
-	_, err = f.WriteString(fmt.Sprintf("%s", OUT))
+	err := ioutil.WriteFile(file, []byte(fmt.Sprintf("%s", OUT)), 0666)
 	if err != nil {
 		return err
 	}
@@ -25,12 +20,7 @@ func (p *Pin) SetDirOut() error {
 
 func (p *Pin) SetDirIn() error {
 	file := fmt.Sprintf("%s/gpio%d/direction", basedir, p.Num)
-	f, err := os.OpenFile(file, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-	if err != nil {
-		return err
-	}
-	defer f.Close()
-	_, err = f.WriteString(fmt.Sprintf("%s", IN))
+	err := ioutil.WriteFile(file, []byte(fmt.Sprintf("%s", IN)), 0666)
 	if err != nil {
 		return err
 	}
@@ -42,12 +32,7 @@ func (p *Pin) ChangeValue(val VALUE) error {
 		return fmt.Errorf("INVALID VALUE FOR ChangeValue")
 	}
 	file := fmt.Sprintf("%s/gpio%d/value", basedir, p.Num)
-	f, err := os.OpenFile(file, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-	if err != nil {
-		return err
-	}
-	defer f.Close()
-	_, err = f.WriteString(fmt.Sprintf("%s", val))
+	err := ioutil.WriteFile(file, []byte(fmt.Sprintf("%s", val)), 0666)
 	if err != nil {
 		return err
 	}
@@ -56,12 +41,7 @@ func (p *Pin) ChangeValue(val VALUE) error {
 
 func (p *Pin) SetHigh() error {
 	file := fmt.Sprintf("%s/gpio%d/value", basedir, p.Num)
-	f, err := os.OpenFile(file, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-	if err != nil {
-		return err
-	}
-	defer f.Close()
-	_, err = f.WriteString(fmt.Sprintf("%s", HIGH))
+	err := ioutil.WriteFile(file, []byte(fmt.Sprintf("%s", HIGH)), 0666)
 	if err != nil {
 		return err
 	}
@@ -70,12 +50,7 @@ func (p *Pin) SetHigh() error {
 
 func (p *Pin) SetLow() error {
 	file := fmt.Sprintf("%s/gpio%d/value", basedir, p.Num)
-	f, err := os.OpenFile(file, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-	if err != nil {
-		return err
-	}
-	defer f.Close()
-	_, err = f.WriteString(fmt.Sprintf("%s", LOW))
+	err := ioutil.WriteFile(file, []byte(fmt.Sprintf("%s", LOW)), 0666)
 	if err != nil {
 		return err
 	}
