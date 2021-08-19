@@ -40,6 +40,8 @@ func main() {
 }
 ```
 
+##### [More Examples](https://github.com/polarspetroll/gopio/tree/main/examples)
+
 ### Pin Numbering
 this package uses physical pin numbering.
 
