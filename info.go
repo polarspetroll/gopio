@@ -24,9 +24,9 @@ func (p *Pin) Value() (VALUE, error) {
 		return "", err
 	}
 	v := string(b)
-	if v == "0" {
+	if v == "0\n" {
 		return LOW, nil
-	} else if v == "1" {
+	} else if v == "1\n" {
 		return HIGH, nil
 	} else {
 		return "", fmt.Errorf("UNDEFINED VALUE")
@@ -47,9 +47,9 @@ func (p *Pin) Direction() (DIR, error) {
 		return "", err
 	}
 	d := string(b)
-	if d == "out" {
+	if d == "out\n" {
 		return OUT, nil
-	} else if d == "in" {
+	} else if d == "in\n" {
 		return IN, nil
 	} else {
 		return "", fmt.Errorf("UNDEFINED DIRECTION")

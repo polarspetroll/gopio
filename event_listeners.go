@@ -19,7 +19,7 @@ func (p *Pin) OnValueChange(callback func(g *Pin)) error {
 	}
 
 	var listenvalue = LOW
-	if string(b) == "0" {
+	if string(b) == "0\n" {
 		listenvalue = HIGH
 	}
 	var v VALUE
