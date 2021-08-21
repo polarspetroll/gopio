@@ -22,6 +22,7 @@ func main() {
   if err != nil {
     // handle error ...
   }
+  defer g5.Close() // make sure to close the pin 
 
   err = g5.SetHigh() // change pin value to high
   if err != nil {
