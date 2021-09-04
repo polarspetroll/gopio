@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-func (p *Pin) OnValueChange(callback func(g *Pin)) error {
+func (p *Pin) OnValueChange(cpin Pin, callback func(g Pin)) error {
 	file := fmt.Sprintf("%s/gpio%d/value", basedir, p.Num)
 	f, err := os.Open(file)
 	if err != nil {
@@ -30,7 +30,7 @@ func (p *Pin) OnValueChange(callback func(g *Pin)) error {
 			panic(err)
 		}
 		if v == listenvalue {
-			callback(p)
+			callback(cpin)
 		}
 	}
 }

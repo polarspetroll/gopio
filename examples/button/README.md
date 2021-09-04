@@ -11,17 +11,14 @@ import (
    "github.com/polarspetroll/gopio"
 )
 
-var(
-  g8 gopio.Pin
-  wg sync.WaitGroup  
-)
+var wg sync.WaitGroup  
 
 func main() {
    btn, err := gopio.New(19, gopio.IN) // button
    if err != nil {
      log.Fatal(err)
    }
-   g8, err = gopio.New(8, gopio.OUT) // led
+   g8, err := gopio.New(8, gopio.OUT) // led
    if err != nil {
            log.Fatal(err)
    }
@@ -30,13 +27,13 @@ func main() {
    defer btn.Close()
 
    wg.Add(1)
-   go func(){btn.OnValueChange(Cback)}()
+   go func(){btn.OnValueChange(g8, Cback)}()
    log.Println("Waiting for button press")
    wg.Wait()
 }
 
-func Cback(g *gopio.Pin) {
-        g8.SetHigh()
+func Cback(g gopio.Pin) {
+        g.SetHigh()
 }
 
 ```
