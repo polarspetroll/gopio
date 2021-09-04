@@ -34,3 +34,32 @@ func (p *Pin) OnValueChange(cpin Pin, callback func(g Pin)) error {
 		}
 	}
 }
+
+
+func (p *Pin) OnValueHigh(cpin Pin, callback func(g Pin)) error {
+	var v VALUE
+	var err error
+	for {
+		v, err = p.Value()
+		if err != nil {
+			panic(err)
+		}
+		if v == HIGH {
+			callback(cpin)
+		}
+	}
+}
+
+func (p *Pin) OnValueLow(cpin Pin, callback func(g Pin)) error {
+	var v VALUE
+	var err error
+	for {
+		v, err = p.Value()
+		if err != nil {
+			panic(err)
+		}
+		if v == LOW {
+			callback(cpin)
+		}
+	}
+}
