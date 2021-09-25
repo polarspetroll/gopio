@@ -1,49 +1,23 @@
 # GOPIO
 A simple gpio controller package for raspberrypi, written in golang.
 
+- 🎇 New feature:
+  - added wiringpi functions which it is written in C and it is much more compatible, efficient and faster. The wiringpi part uses CGO feature of golang so wiringpi library is required if you wish to use it.
+
+
+  > the documentation for this package will be available very soon.
+
 ### Installation
 
 ```bash
+sudo apt-get install wiringpi
+
 go get github.com/polarspetroll/gopio
-```
-
-#### basic example
-
-```go
-package main
-
-import (
-  "log"
-
-  gpio "github.com/polarspetroll/gopio"
-)
-func main() {
-  g5, err := gpio.New(5, gpio.OUT) // first export a pin
-  if err != nil {
-    // handle error ...
-  }
-  defer g5.Close() // make sure to close the pin 
-
-  err = g5.SetHigh() // change pin value to high
-  if err != nil {
-    // handle error ...
-  }
-
-  err = g5.SetLow() // change pin value to low  
-  if err != nil {
-    // handle error ...
-  }
-
-  err = g5.ChangeValue(gpio.HIGH) // manual value manipulation
-  if err != nil {
-    // handle error ...
-  }
-}
 ```
 
 ##### [More Examples](https://github.com/polarspetroll/gopio/tree/main/examples)
 
 ### Pin Numbering
-this package uses physical pin numbering.
+this package uses physical pin numbering.(both wiringpi functions and default functions)
 
 ![](gpio_map.jpeg)
