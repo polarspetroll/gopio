@@ -15,7 +15,7 @@ func main() {
    }
    defer g8.Close()
 
-   for (i := 0; i < 10; i++){
+   for i := 0; i < 10; i++ {
      err = g8.SetHigh()
      if err != nil {
         log.Fatal(err)
