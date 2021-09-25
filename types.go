@@ -14,6 +14,12 @@ type Pin struct {
 	Dir DIR
 }
 
+
+type WiringPiPin struct {
+	Num int
+	Dir DIR
+}
+
 type DIR string
 type VALUE string
 
