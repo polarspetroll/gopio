@@ -15,7 +15,7 @@ sudo apt-get install wiringpi
 go get github.com/polarspetroll/gopio
 ```
 
-##### [More Examples](https://github.com/polarspetroll/gopio/tree/main/examples)
+##### [Examples](https://github.com/polarspetroll/gopio/tree/main/examples)
 
 ### Pin Numbering
 this package uses physical pin numbering.(both wiringpi functions and default functions)
