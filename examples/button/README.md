@@ -3,37 +3,34 @@
 
 
 ```go
+package main
+
 import (
-   "log"
-   "sync"
+        "time"
 
-
-   "github.com/polarspetroll/gopio"
+        "github.com/polarspetroll/gopio"
 )
 
-var wg sync.WaitGroup  
+const (
+    BUTTON = 19 //
+                // Physical
+    LED    = 8  //
+)
 
 func main() {
-   btn, err := gopio.New(19, gopio.IN) // button
-   if err != nil {
-     log.Fatal(err)
-   }
-   g8, err := gopio.New(8, gopio.OUT) // led
-   if err != nil {
-           log.Fatal(err)
-   }
+        gopio.GopioSetUp() //initial function for wiringpi
 
-   defer g8.Close()
-   defer btn.Close()
+        btn := gopio.PinMode(BUTTON, gopio.IN)
+        g8  := gopio.PinMode(LED, gopio.OUT)
 
-   wg.Add(1)
-   go func(){btn.OnValueChange(g8, Cback)}()
-   log.Println("Waiting for button press")
-   wg.Wait()
-}
-
-func Cback(g gopio.Pin) {
-        g.SetHigh()
+        for {
+            if btn.DigitalRead() == gopio.HIGH {
+                g8.DigitalWrite(gopio.HIGH)
+            }else{
+                g8.DigitalWrite(gopio.LOW)
+            }
+            time.Sleep(20 * time.Millisecond) // 20 milliseconds is a reasonable delay. However, you can change this value depending on your usage.
+        }
 }
 
 ```

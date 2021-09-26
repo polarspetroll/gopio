@@ -1,33 +1,25 @@
 # Blink
 
 ```go
-import (
-   "log"
-   "time"
+package main
 
-   "github.com/polarspetroll/gopio"
+import (
+        "time"
+
+        "github.com/polarspetroll/gopio"
 )
 
 func main() {
-   g8, err := gopio.New(8, gopio.OUT)
-   if err != nil {
-     log.Fatal(err)
-   }
-   defer g8.Close()
-
-   for i := 0; i < 10; i++ {
-     err = g8.SetHigh()
-     if err != nil {
-        log.Fatal(err)
-     }
-     time.Sleep(1000 * time.Millisecond)
-     err = g8.ChangeValue(gopio.LOW)
-     if err != nil {
-        log.Fatal(err)
-     }
-     time.Sleep(1000 * time.Millisecond)
-   }
+        gopio.GopioSetUp() //initial function for wiringpi
+        gp40 := gopio.PinMode(8, gopio.OUT) // physical pin numbering (BCM 14, Physical 8)
+        for {
+                gp40.DigitalWrite(gopio.HIGH)
+                time.Sleep(100 * time.Millisecond)
+                gp40.DigitalWrite(gopio.LOW)
+                time.Sleep(100 * time.Millisecond)
+        }
 }
+
 ```
 
 ##### Wiring

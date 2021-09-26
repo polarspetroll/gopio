@@ -28,6 +28,11 @@ func (p *WiringPiPin) DigitalWrite(v VALUE) {
   }
 }
 
-func (p *WiringPiPin) DigitalRead() int {
-  return int(C.digitalRead(C.int(p.Num)))
+func (p *WiringPiPin) DigitalRead() VALUE {
+  v := int(C.digitalRead(C.int(p.Num)))
+  if v == 1 {
+    return gopio.HIGH
+  }else {
+    return gopio.LOW
+  }
 }
