@@ -1,9 +1,5 @@
 # GOPIO
-A simple gpio controller package for raspberrypi, written in golang.
-
-- 🎇 New feature:
-  - added wiringpi functions which it is written in C and it is much more compatible, efficient and faster. The wiringpi part uses CGO feature of golang so wiringpi library is required if you wish to use it.
-
+A simple gpio controller package for raspberrypi.
 
   > the documentation for this package will be available very soon.
 
