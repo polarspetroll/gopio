@@ -1,7 +1,9 @@
 # GOPIO
 A simple gpio controller package for raspberrypi.
 
-  > the documentation for this package will be available very soon.
+[Documentation](https://pkg.go.dev/github.com/polarspetroll/gopio#section-documentation)
+
+[Examples](https://github.com/polarspetroll/gopio/tree/main/examples)
 
 ### Installation
 
@@ -11,7 +13,6 @@ sudo apt-get install wiringpi
 go get github.com/polarspetroll/gopio
 ```
 
-##### [Examples](https://github.com/polarspetroll/gopio/tree/main/examples)
 
 ### Pin Numbering
 this package uses physical pin numbering.(both wiringpi functions and default functions)
