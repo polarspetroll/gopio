@@ -3,6 +3,7 @@ package gopio
 /*
 #cgo LDFLAGS: -lwiringPi
 #include <wiringPi.h>
+#include "local_lib.h"
 */
 import "C"
 
@@ -36,8 +37,19 @@ func (p *WiringPiPin) DigitalWrite(v VALUE) {
 func (p *WiringPiPin) DigitalRead() VALUE {
   v := int(C.digitalRead(C.int(p.Num)))
   if v == 1 {
-    return gopio.HIGH
+    return HIGH
   }else {
-    return gopio.LOW
+    return LOW
   }
+}
+
+// this function takes a value(HIGH, LOW) and writes it to the pin on program interruption
+func (p WiringPiPin) WriteOnInterrupt(v VALUE) {
+  var val int
+  if v == HIGH {
+    val = 1
+  }else {
+    val = 0
+  }
+  C.close_pin(C.int(p.Num), C.int(val))
 }
