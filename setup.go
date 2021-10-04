@@ -13,7 +13,7 @@ func New(pnum int, dir DIR) (pin Pin, err error) {
 	if pnum == 27 {
 		pnum = 0
 	} else {
-		pnum = PIN_NUMS[pnum] // converts the physical pin number to the virtual numbering
+		pnum = PIN_NUMS[pnum] // converts the physical pin number to BCM numbering
 		if pnum == 0 {
 			return Pin{}, fmt.Errorf("INVALID PIN NUMBER")
 		}
