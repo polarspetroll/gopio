@@ -53,3 +53,13 @@ func (p WiringPiPin) WriteOnInterrupt(v VALUE) {
   }
   C.close_pin(C.int(p.Num), C.int(val))
 }
+
+// returns the analog value for pin(not tested)
+func (p WiringPiPin) AnalogRead() int {
+  return int(C.analogRead(C.int(p.Num)))
+}
+
+// writes analog value to pin(not tested)
+func (p WiringPiPin) AnalogWrite(val int) {
+  C.analogWrite(C.int(val))
+}
