@@ -1,3 +1,9 @@
+/*
+functions in this file are related to interruption and system signals.
+
+More here : https://github.com/polarspetroll/gopio/tree/main/examples/interruption
+*/
+
 #include <stdlib.h>
 #include <signal.h>
 #include <stdbool.h>
