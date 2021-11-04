@@ -35,7 +35,6 @@ func (p *Pin) OnValueChange(cpin Pin, callback func(g Pin)) error {
 	}
 }
 
-
 func (p *Pin) OnValueHigh(cpin Pin, callback func(g Pin)) error {
 	var v VALUE
 	var err error
