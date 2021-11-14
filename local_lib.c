@@ -13,7 +13,7 @@ More here : https://github.com/polarspetroll/gopio/tree/main/examples/interrupti
 void close_pin(int pnum, int value) {
   bool v = true;
 
-  void close(int i) {
+  static void close(int i) {
     if (value == 0) {
       digitalWrite(pnum, LOW);
     }else {
@@ -24,7 +24,7 @@ void close_pin(int pnum, int value) {
   }
 
   signal(SIGHUP, close);
-	signal(SIGTERM, close); // listens for system signals
+  signal(SIGTERM, close); // listens for system signals
   signal(SIGINT, close);
 
   while (v) {
