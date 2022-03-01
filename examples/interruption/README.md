@@ -12,7 +12,7 @@ import (
 
 func main() {
    gopio.GopioSetUp() // initialize
-   g40 := gopio.PinMode(40, gopio.OUT) // physical pin numberinh
+   g40 := gopio.PinMode(40, gopio.OUT) // physical pin numbering
 
    go g40.WriteOnInterrupt(gopio.LOW) // run another go routine for listener
 
