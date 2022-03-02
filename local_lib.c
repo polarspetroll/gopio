@@ -13,7 +13,7 @@ More here : https://github.com/polarspetroll/gopio/tree/main/examples/interrupti
 void close_pin(int pnum, int value) {
   bool v = true;
 
-  static void close(int i) {
+  void close(int i) {
     if (value == 0) {
       digitalWrite(pnum, LOW);
     }else {
